@@ -6,8 +6,15 @@ class BooksController < ApplicationController
   end
 
   def index
-    @books = Book.all
     @book = Book.new
+    if params[:new_date]
+      @books = Book.all.order(created_at: :desc)
+    elsif params[:favorites]
+      @books = Book.all.order(rate: :desc)
+
+    else
+      @books = Book.all
+    end
   end
 
   def create
@@ -48,6 +55,6 @@ class BooksController < ApplicationController
   private
 
   def book_params
-    params.require(:book).permit(:title, :body)
+    params.require(:book).permit(:title, :body, :rate, :category)
   end
 end

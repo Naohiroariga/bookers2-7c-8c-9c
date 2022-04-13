@@ -1,0 +1,15 @@
+<div class"star-group">
+   <div class="detail-value", id="star-rate-<%= book.id %>"></div>
+</div>
+<script>
+   $('#star-rate-<%= book.id %>').raty({
+   size: 36,
+   starOff: '<%= asset_path('star-off.png') %>',
+   starOn : '<%= asset_path('star-on.png') %>',
+   starHalf: '<%= asset_path('star-half.png') %>',
+   scoreName: 'book[rate]',
+   half: true,
+   readOnly: true,
+   score: <%= book.rate %>,
+   });
+</script>
