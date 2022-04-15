@@ -15,4 +15,11 @@
       <%= render 'index', books: @books %>
     </div>
   </div>
+  <% @tag.each do |tag| %>
+   <% tag.books.each do |book| %>
+   <p><%= book.title %></p>
+   <% end %>
+
+
+  <% end %>
 </div>

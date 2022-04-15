@@ -1,0 +1,11 @@
+<% if user_signed_in? %>
+  <div class="search_form">
+    <%= form_with url:search_path, method: :get, local: true do |f| %>
+      <%= f.text_field :word %>
+      <%= f.hidden_field :range, :value => "tag" %>
+      <%= f.hidden_field :method, :value => "perfect_match" %>
+      <%= f.submit "タグ検索" %>
+    <% end %>
+
+  </div>
+<% end %>

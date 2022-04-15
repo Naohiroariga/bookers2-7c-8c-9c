@@ -5,8 +5,12 @@
     <% if @range == "User" %>
       <%= render 'users/index', users: @users %>
 
-    <% else %>
+    <% elsif @range == 'Book' %>
       <%= render 'books/index', books: @books %>
+    <% elsif @range == 'tag' %>
+      <% @tags.each do |tag| %>
+         <%= render 'books/index', books: tag.books %>
+      <% end %>
     <% end %>
 
   </div>
