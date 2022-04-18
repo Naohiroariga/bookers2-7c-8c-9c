@@ -7,13 +7,12 @@ class BooksController < ApplicationController
 
   def index
     @book = Book.new
-    @tag = Tag.looks_tag('tag', 'sample')
     if params[:new_date]
       @books = Book.all.order(created_at: :desc)
     elsif params[:favorites]
       @books = Book.all.order(rate: :desc)
     else
-      @books = Book.all
+      @books = Book.week_rank
     end
   end
 
