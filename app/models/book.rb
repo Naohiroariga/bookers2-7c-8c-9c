@@ -13,7 +13,7 @@ class Book < ApplicationRecord
     less_than_or_equal_to: 5,
     greater_than_or_equal_to: 0.5}, presence: true
 
-  is_impressionable counter_cache: true
+  is_impressionable
 
   def favorited_by?(user)
     favorites.exists?(user_id: user.id)
