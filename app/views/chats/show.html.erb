@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+      <h2><%= @user.name %>さんとのチャット</h2>
+
+      <div id="chat_message">
+        <%= render 'chats/chat_message', chats: @chats %>
+      </div>
+
+      <%= form_with model:@chat, remote: true do |f| %>
+        <%= f.text_field :message %>
+        <%= f.hidden_field :room_id %>
+        <%= f.submit "送信" %>
+      <% end %>
+
+    </div>
+  </div>
+
+</div>

@@ -17,12 +17,7 @@ class Book < ApplicationRecord
     favorites.exists?(user_id: user.id)
   end
 
-  def self.week_rank
-    book = Book.find(Favorite.group(:book_id).order('count(book_id) DESC').pluck(:book_id))
-    books = Book.all - book
-    book + books
-  end
-
+  
   def save_tags(savebook_tags)
     current_tags = self.tags.pluck(:name) unless self.tags.nil?
     old_tags = current_tags - savebook_tags

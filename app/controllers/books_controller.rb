@@ -12,7 +12,12 @@ class BooksController < ApplicationController
     elsif params[:favorites]
       @books = Book.all.order(rate: :desc)
     else
-      @books = Book.week_rank
+      to = Time.current.at_end_of_day
+      from = (to - 6.day).at_beginning_of_day
+      @books = Book.all.sort{|a, b|
+        b.favorites.where(created_at: from...to).size <=>
+        a.favorites.where(created_at: from...to).size
+      }
     end
   end
 
