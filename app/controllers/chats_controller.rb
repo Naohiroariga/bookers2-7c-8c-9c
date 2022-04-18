@@ -10,7 +10,7 @@ class ChatsController < ApplicationController
       UserRoom.create(user_id: @user.id, room_id: @room.id)
       UserRoom.create(user_id: current_user.id, room_id: @room.id)
     else
-      @room = user_room.room
+      @room = user_rooms.room
     end
 
     @chats = @room.chats
@@ -18,13 +18,20 @@ class ChatsController < ApplicationController
   end
 
   def create
-    chat = current_user.chats.new(chat_params)
-    chat.save
+    @chat = current_user.chats.new(chat_params)
+    render :validater unless @chat.save
   end
 
   private
 
   def chat_params
     params.require(:chat).permit(:message, :room_id)
+  end
+
+  def reject_non_related
+    user = User.find(params[:id])
+    unless current_user.following?(user) && user.foolowing?(current_user)
+      redirect_to books_path
+    end
   end
 end

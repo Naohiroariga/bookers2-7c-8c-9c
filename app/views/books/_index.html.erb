@@ -31,6 +31,9 @@
         <td>
           <%= render 'books/rate', book: book %>
         </td>
+        <td>
+          閲覧数：<%= t.impressions_count %>
+        </td>
       </tr>
     <% end %>
   </tbody>
