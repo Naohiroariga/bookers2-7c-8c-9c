@@ -54,4 +54,8 @@ class User < ApplicationRecord
     end
   end
 
+  def ioi(a, b)
+    ( a + b ) / a * 100
+  end
+
 end
