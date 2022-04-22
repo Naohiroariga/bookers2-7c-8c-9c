@@ -11,38 +11,8 @@
       <%= render 'books/index',books: @books %>
 
       <h2>投稿数の前日比・前週比</h2>
-      <table class="table table-bordered">
-       <thead>
-         <tr>
-           <th scope="col">今日の投稿数</th>
-           <th scop="col">前日の投稿数</th>
-           <th scop="col">前日比</th>
-         </tr>
-       </thead>
-       <tbody>
-         <tr>
-           <th><%= @today_count %></th>
-           <th><%= @yesterday_count %></th>
-           <th><%= @the_day_before %> %</th>
-         </tr>
-       </tbody>
-     </table>
-           <table class="table table-bordered">
-       <thead>
-         <tr>
-           <th scope="col">今週の投稿数</th>
-           <th scop="col">前週の投稿数</th>
-           <th scop="col">前週比</th>
-         </tr>
-       </thead>
-       <tbody>
-         <tr>
-           <th><%= @week_count %></th>
-           <th><%= @pre_week_count %></th>
-           <th><%= @wow %> %</th>
-         </tr>
-       </tbody>
-     </table>
+      <%= render 'date_info', books: @books %>
+      <h2>7日間分の投稿数</h2>
+      <%= render 'book_chart', books: @books %>
     </div>
-  </div>
 </div>

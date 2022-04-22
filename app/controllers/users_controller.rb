@@ -7,18 +7,28 @@ class UsersController < ApplicationController
     @book = Book.new
     to = Time.current.all_day
     from = (Time.current - 1.day).all_day
+    @two = (Time.current - 2.day).all_day
+    @three =  (Time.current - 3.day).all_day
+    @four =   (Time.current - 4.day).all_day
+    @five =   (Time.current - 5.day).all_day
+    @six =   (Time.current - 6.day).all_day
     week = Time.current.all_week
     pre_week = (Time.current - 1.week).all_week
 
-    @today_count = @books.where(created_at: to).count
-    @yesterday_count = @books.where(created_at: from).count
-    @week_count = @books.where(created_at: week).count
-    @pre_week_count = @books.where(created_at: pre_week).count
-    @the_day_before = (@today_count.to_i / @yesterday_count.to_i)*100
-    @wow = (@week_count.to_i / @pre_week_count.to_i ) *100
+    @today_books = @books.books_count(to)
+    @yesterday_books = @books.books_count(from)
+    @week_books = @books.where(created_at: week)
+    @pre_week_books = @books.where(created_at: pre_week)
+    @the_day_before = (@today_books.count.to_f / @yesterday_books.count.to_f)*100
+    @wow = (@week_books.count.to_f / @pre_week_books.count.to_f ) *100
 
+  end
 
-
+  def daily_posts
+    
+    user = User.find(params[:user_id])
+    @books = user.books.where(created_at: params[:created_at].to_date.all_day)
+    render :user_daily_posts_form
   end
 
   def index

@@ -48,5 +48,9 @@ class Book < ApplicationRecord
     end
   end
 
+  def self.books_count(day)
+    where(created_at: day)
+  end
+
 
 end

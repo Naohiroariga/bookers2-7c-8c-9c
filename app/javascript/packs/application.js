@@ -19,6 +19,10 @@ require("../jquery_raty")
 //= require jquery
 //= require rails-ujs
 
+import "chartkick"
+import "Chart.js"
+
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+

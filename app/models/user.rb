@@ -19,6 +19,10 @@ class User < ApplicationRecord
   has_many :chats, dependent: :destroy
   has_many :rooms, through: :user_rooms
 
+  has_many :group_users, foreign_key: "user_id"
+  has_many :groups, through: :group_users
+
+
   validates :name, length: { minimum: 2, maximum: 20 }, uniqueness: true
   validates :introduction, length: { maximum: 50 }
 
@@ -52,10 +56,6 @@ class User < ApplicationRecord
     else
       @user = User.all
     end
-  end
-
-  def ioi(a, b)
-    ( a + b ) / a * 100
   end
 
 end
